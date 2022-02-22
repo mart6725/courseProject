@@ -27,6 +27,9 @@ export class RecipeService{
 getRecipes(){
     return this.recipes.slice();            //slice teeb koopia arrayst
 }
+getRecipe(id:number){
+    return this.recipes[id];
+}
 
 
 }
