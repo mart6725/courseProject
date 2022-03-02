@@ -1,4 +1,4 @@
-import { EventEmitter } from '@angular/core';
+
 import { Ingredient } from '../shared/Ingredient.model';
 import{ Recipe} from './recipe.model';
 
@@ -22,7 +22,7 @@ export class RecipeService{
         new Ingredient('beans',1),
         new Ingredient('frozen vegetables',1)
         ])];
-    recipeSelected= new EventEmitter<Recipe>();
+    
 
 getRecipes(){
     return this.recipes.slice();            //slice teeb koopia arrayst
