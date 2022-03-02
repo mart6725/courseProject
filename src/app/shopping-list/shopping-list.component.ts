@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import{Ingredient} from '../shared/Ingredient.model'
 import { ShoppingListService } from './shopping-list.service';
 
@@ -9,7 +10,7 @@ import { ShoppingListService } from './shopping-list.service';
 })
 export class ShoppingListComponent implements OnInit {
   ingredients: Ingredient[];
-
+  
 
   constructor(private slService: ShoppingListService) { }
 
@@ -18,6 +19,9 @@ export class ShoppingListComponent implements OnInit {
     this.slService.ingredientsChanged.subscribe((ingredients: Ingredient[])=>{
       this.ingredients= ingredients;
     })
+  }
+  onEditItem(index: number){
+    this.slService.startedEditing.next(index); // saame indexi k2tte ja saadame info subjectile shopping list services
   }
 
 }
