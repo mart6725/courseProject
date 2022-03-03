@@ -37,6 +37,10 @@ onEditRecipe(){
   //this.router.navigate(['edit'],{relativeTo:this.route})
   this.router.navigate(['../', this.id,'edit'],{relativeTo:this.route});  // t88tab sama moodi , alguses one level up ja siis meie path
 }
+onDelete(){
+  this.recipeService.deleteRecipe(this.id)
+  this.router.navigate([''],{relativeTo: this.route})
+}
 
 
 }

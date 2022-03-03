@@ -1,9 +1,14 @@
 
+import { Subject } from 'rxjs';
 import { Ingredient } from '../shared/Ingredient.model';
 import{ Recipe} from './recipe.model';
 
 
 export class RecipeService{
+    recipesChanged= new Subject<Recipe[]>();
+
+
+
     private recipes: Recipe[] =[new Recipe(
         'Pannkoogid mootori6liga',
         'meeliülendav kogemus!',
@@ -30,6 +35,17 @@ getRecipes(){
 getRecipe(id:number){
     return this.recipes[id];
 }
-
+addRecipe(recipe:Recipe){
+    this.recipes.push(recipe);
+    this.recipesChanged.next(this.recipes.slice())      // sellega kuvame muutust kasutajale , emitime et recipelist saaks kuulata
+}                                                       // ja ennast muuta 
+updateRecipe(recipe:Recipe, index:number){
+    this.recipes[index] = recipe;
+    this.recipesChanged.next(this.recipes.slice())          // slice t2hendab koopiat arrayst
+}
+deleteRecipe(index:number){
+    this.recipes.splice(index, 1)                       //sellel indexil kustutab 1 elemendi 
+    this.recipesChanged.next(this.recipes.slice())      // emitime array v2rskenduse 
+}
 
 }
